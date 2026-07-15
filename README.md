@@ -1,67 +1,92 @@
 # proyecto-sentimientos
 
-🧠 Detector de Estado de Ánimo (Analizador de Sentimientos en Salud Mental)
-Este proyecto consiste en una aplicación web interactiva desarrollada con Streamlit que utiliza técnicas de Procesamiento de Lenguaje Natural (PLN) y modelos de Machine Learning de Scikit-learn para interpretar y clasificar estados de ánimo o posibles trastornos reflejados en textos en español.
+🌿 Analizador de Ánimo Inteligente (Equipo Sentimientos)
+El Analizador de Ánimo Inteligente es una herramienta interactiva de autoconciencia y salud mental desarrollada en Python. Mediante técnicas de Procesamiento del Lenguaje Natural (NLP) y Machine Learning, analiza el tono emocional de las palabras del usuario en tiempo real.
 
-El modelo ha sido entrenado para identificar múltiples clases como: Normal, Depression, Anxiety, Bipolar, Stress, Personality disorder y Suicidal.
+El sistema está diseñado para detectar desórdenes emocionales y estados de estrés, guiando al usuario con empatía a través de una interfaz botánica adaptativa con tonos "Crema y Salvia Terroso".
 
-🚀 Características Clave
-Preprocesamiento Avanzado con spaCy: Limpieza lingüística en español que incluye tokenización, eliminación de stop words (palabras vacías) y lematización (reducción a la raíz de las palabras) utilizando el modelo es_core_news_sm.
+🚀 Características Clave y Novedades (v2.0)
+Traducción Dinámica (Blindaje en Español): Mapeo interno robusto que traduce automáticamente las predicciones nativas del modelo en inglés (Anxiety, Depression, Suicidal, Normal, etc.) a sus correspondientes términos localizados y amigables en español ("Ansiedad", "Depresión", "Suicida", "Normal").
 
-Vectorización de Texto: Uso de TfidfVectorizer controlado con selección de características para convertir el lenguaje humano en vectores numéricos legibles por el algoritmo.
+Registro por Calendario Interactivo: Implementación de un componente de fecha st.date_input integrado que reemplaza el selector de meses estático, permitiendo al usuario registrar análisis en cualquier fecha histórica o actual.
 
-Modelo de Clasificación Balanceado: Entrenamiento con un algoritmo de Regresión Logística configurado con pesos balanceados (class_weight='balanced') para corregir el impacto del desbalance crítico de clases en los datos de salud mental.
+Gráfica de Tendencia Spline (Línea Redondeada): Visualización interactiva y orgánica mediante la librería Altair que aplica una interpolación monotone para trazar curvas suaves y puntos circulares exactos sobre cada registro.
 
-Interfaz Interactiva: Una SPA (Single Page Application) limpia y moderna construida en Streamlit con desgloses interactivos de la probabilidad y métricas de confianza en tiempo real.
+Escala de Bienestar Penalizada: Un sistema estructurado que mapea de manera lógica y visual la severidad de los estados de ánimo:
 
-📁 Estructura del Proyecto
-Plaintext
-├── app.py                     # Script principal de la aplicación de Streamlit
-├── vectorizador.pkl           # Vectorizador TF-IDF serializado (entrenado en Colab)
-├── LogisticRegression_Balanced.pkl # Modelo predictivo entrenado con Scikit-learn
-├── requirements.txt           # Dependencias de Python necesarias para correr el proyecto
-└── README.md                  # Documentación del proyecto (este archivo)
-🛠️ Requisitos e Instalación
-Para ejecutar este proyecto de manera local en tu computadora, sigue los siguientes pasos:
++1: Normal 😊
 
-1. Clonar el repositorio y acceder a él
-Bash
-git clone https://github.com/tu-usuario/proyecto_final_sentimientos.git
-cd proyecto_final_sentimientos
-2. Instalar las dependencias
-Asegúrate de tener instalado Python 3.10, 3.11 o 3.12 (versión estable recomendada). Instala las librerías necesarias con el siguiente comando:
+0: Estrés 😰
 
-Bash
-pip install -r requirements.txt
-3. Descargar el modelo de lenguaje de spaCy para español
-Bash
-python -m spacy download es_core_news_sm
-💻 Cómo Ejecutar la Aplicación
-Una vez que tengas los archivos de tu modelo (LogisticRegression_Balanced.pkl y vectorizador.pkl) dentro de la carpeta raíz, inicia el servidor local de Streamlit con:
+-1: Depresión 😢
 
-Bash
-streamlit run app.py
-Streamlit se abrirá automáticamente en tu navegador web predeterminado en la dirección local: http://localhost:8501.
+-2: Ansiedad, Bipolaridad o Trastornos de Personalidad ⚠️
 
-📊 Flujo de Machine Learning (Backend en Colab)
-El desarrollo del modelo siguió el ciclo clásico de vida de un proyecto de ciencia de datos:
+-3: Ideación Suicida 🚨
 
-EDA (Análisis Exploratorio de Datos): Estudio del desbalance de clases del dataset (donde la gran mayoría de datos se concentraban en clases como Normal y Depression).
+🛠️ Stack Tecnológico y Modelado
+Interfaz de Usuario (Frontend): Streamlit (con CSS inyectado para una experiencia visual relajante con paleta botánica).
 
-Preprocesamiento Estricto: Ejecución de procesamiento en paralelo a través de los pipes nativos de spaCy para limpiar textos en español eficientemente.
+Procesamiento de Lenguaje Natural (NLP): SpaCy (es_core_news_sm) para la tokenización, lematización inteligente y filtrado de palabras vacías (stopwords) y signos de puntuación en español.
 
-Manejo de Desbalance: Corrección del sesgo del modelo aplicando estratificación en el particionado de datos (stratify=y) y entrenando modelos con penalización proporcional por clase.
+Modelado de Machine Learning (Backend):
 
-Serialización: Exportación de artefactos mediante joblib para su consumo ágil en la aplicación de producción.
+Modelo Logistic Regression Balanced preentrenado, optimizado para manejar eficientemente conjuntos de datos desbalanceados en temas de salud mental.
 
-📝 Ejemplo de requirements.txt
-Para garantizar la compatibilidad del software, tu archivo requirements.txt debería verse de la siguiente manera:
+TF-IDF / Vectorizador para la conversión del texto en variables numéricas interpretables por el modelo.
 
-Plaintext
-streamlit
-spacy
-joblib
-scikit-learn
-numpy
-pandas
-⚠️ Descargo de responsabilidad: Esta aplicación se creó únicamente con fines educativos e informativos. Las predicciones del modelo se basan en patrones lingüísticos estadísticos y bajo ninguna circunstancia deben considerarse como un diagnóstico o reemplazo de una consulta médica o psicológica profesional.
+Visualizaciones: Gráficas dinámicas de dispersión y líneas continuas con Altair.
+
+📦 Estructura del Repositorio
+
+├── app.py                         # Archivo principal de la aplicación Streamlit
+├── LogisticRegression_Balanced.pkl # Modelo de Machine Learning entrenado
+├── vectorizador.pkl               # Pipeline del vectorizador para preprocesamiento de texto
+├── requirements.txt               # Lista de dependencias y librerías del proyecto
+└── README.md                      # Documentación del proyecto (este archivo)
+
+💻 Instalación y Ejecución Local
+Sigue estos pasos para clonar el repositorio, configurar el entorno virtual e iniciar la aplicación en tu máquina:
+
+1. Clonar el repositorio
+
+ ***git clone https://github.com/Isabel160609/proyecto-sentimientos.git
+   cd proyecto-sentimientos***
+
+2. Configurar el Entorno Virtual (Opcional pero recomendado)
+
+ # En Windows:
+ ***python -m venv venv
+   venv\Scripts\activate***
+
+# En macOS/Linux:
+ ***python3 -m venv venv
+   source venv/bin/activate***
+
+3. Instalar Dependencias
+Instala los paquetes necesarios definidos en requirements.txt:
+
+  ***pip install -r requirements.txt***
+
+4. Descargar el Modelo en Español de SpaCy
+Dado que el preprocesamiento de NLP se realiza en español, es indispensable descargar el pipeline de SpaCy ejecutando:
+
+  ***python -m spacy download es_core_news_sm***
+
+5. Lanzar la Aplicación
+Inicia el servidor local de Streamlit:
+
+  ***streamlit run app.py***
+
+La herramienta se abrirá automáticamente en tu navegador web predeterminado en la dirección http://localhost:8501.
+
+👥 Miembros del Equipo
+Este proyecto ha sido desarrollado con dedicación y enfoque en el impacto social por:
+
+Isabel Domenech (Desarrolladora Full-Stack & Python Dev)
+
+Claudia Grossi (Gestión de Proyectos & Organización)
+
+Waleska Jimenez (Trust & Safety Specialist & Data Analyst)
+
+Desarrollado con ❤️ por el Equipo Sentimientos para promover la autoconciencia y el bienestar mental.
